@@ -8,6 +8,7 @@ RSpec.describe QuestsController, :type => :routing do
     end
 
     it "routes to #new" do
+      pending 'auto generated non-running test.'
       expect(:get => "/quests/new").to route_to("quests#new")
     end
 
@@ -16,6 +17,7 @@ RSpec.describe QuestsController, :type => :routing do
     end
 
     it "routes to #edit" do
+      pending 'auto generated non-running test.'
       expect(:get => "/quests/1/edit").to route_to("quests#edit", :id => "1")
     end
 

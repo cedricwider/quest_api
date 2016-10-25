@@ -15,7 +15,7 @@ class QuestsController < ApplicationController
 
   # POST /quests
   def create
-    @quest = Quest.new(quest_params)
+    @quest = Quest.new(quest_json)
 
     if @quest.save
       render json: @quest, status: :created, location: @quest
@@ -47,5 +47,10 @@ class QuestsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def quest_params
       params.require(:quest).permit(:name, :description, :status)
+    end
+
+    def quest_json
+      JSON.parse(request.body.read)
+        .symbolize_keys.slice(:name, :description, :user_id)
     end
 end

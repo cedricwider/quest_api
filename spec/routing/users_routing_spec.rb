@@ -8,6 +8,7 @@ RSpec.describe UsersController, :type => :routing do
     end
 
     it "routes to #new" do
+      pending 'auto generated non-running test.'
       expect(:get => "/users/new").to route_to("users#new")
     end
 
@@ -16,6 +17,7 @@ RSpec.describe UsersController, :type => :routing do
     end
 
     it "routes to #edit" do
+      pending 'auto generated non-running test.'
       expect(:get => "/users/1/edit").to route_to("users#edit", :id => "1")
     end
 
