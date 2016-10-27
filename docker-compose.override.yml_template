@@ -1,0 +1,11 @@
+# Template file that is safe to add to VCS without
+# disturbing the docker-flow.
+# For dev environments, copy this template to docker-compose.override.yml
+
+app:
+  volumes:
+    - .:/var/www/quest_api
+
+web:
+  volumes_from:
+    - app

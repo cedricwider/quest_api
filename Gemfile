@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'postgres', '~> 0.8.1'
+gem 'pg', '~> 0.19.0'
 gem 'puma', '~> 3.6'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
