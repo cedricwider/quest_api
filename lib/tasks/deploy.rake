@@ -1,15 +1,16 @@
 # use SSHKit directly instead of Capistrano
 require 'sshkit'
 require 'sshkit/dsl'
+include SSHKit::DSL
 
 # set the identifier used to used to tag our Docker images
-deploy_tag = ENV['DEPLOY_TAG']
+deploy_tag = ENV['DEPLOY_TAG'] || '13_683c55a'
 
 # set the name of the environment we are deploying to (e.g. staging, production, etc.)
 deploy_env = ENV['DEPLOY_ENV'] || :production
 
 # set the location on the server of where we want files copied to and commands executed from
-deploy_path = ENV['DEPLOY_PATH'] || "/home/#{ENV['SERVER_USER']}"
+deploy_path = ENV['DEPLOY_PATH'] || '/var/www/questapi' #"/home/#{ENV['SERVER_USER']}"
 
 # connect to server
 server = SSHKit::Host.new hostname: ENV['SERVER_HOST'], port: ENV['SERVER_PORT'], user: ENV['SERVER_USER'], password: ENV['SERVER_PASS']
