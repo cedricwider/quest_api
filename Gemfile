@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'mysql2', '>= 0.3.18', '< 0.5'
-gem 'puma', '~> 3.0'
+gem 'postgres', '~> 0.8.1'
+gem 'puma', '~> 3.6'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'haml-rails'
-
 gem "rspec-rails", group: [:development, :test]
 gem 'listen', '~> 3.0.5', group: :development
 gem 'spring', group: :development

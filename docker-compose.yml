@@ -1,0 +1,16 @@
+app:
+  # use the Dockerfile next to this file
+  build: .
+  env_file: .env
+  environment:
+    RAILS_ENV: $RAILS_ENV
+  links:
+    - db
+  ports:
+    - '3000:3000'
+
+
+db:
+  image postgres:9.6.0
+  volumes:
+    - quest-api-postgres:/var/lib/postgresql/data
