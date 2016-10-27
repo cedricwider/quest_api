@@ -53,15 +53,15 @@ deployment:
     branch: master
     commands:
       # tag the images we built with a repository name and deploy identifier
-      - docker tag $(docker images | grep questapi_app | awk '{ print $3 }') reponame/questapi_app:$DEPLOY_TAG
-      - docker tag $(docker images | grep questapi_web | awk '{ print $3 }') reponame/questapi_web:$DEPLOY_TAG
+      - docker tag $(docker images | grep questapi_app | awk '{ print $3 }') cedricwider/questapi_app:$DEPLOY_TAG
+      - docker tag $(docker images | grep questapi_web | awk '{ print $3 }') cedricwider/questapi_web:$DEPLOY_TAG
 
       # log into Docker Hub so we can push our tagged images
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
 
       # push tagged images
-      - docker push reponame/questapi_app:$DEPLOY_TAG
-      - docker push reponame/questapi_web:$DEPLOY_TAG
+      - docker push cedricwider/questapi_app:$DEPLOY_TAG
+      - docker push cedricwider/questapi_web:$DEPLOY_TAG
 
       # run deploy script
       - bundle exec rake docker:deploy
