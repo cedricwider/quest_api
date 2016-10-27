@@ -1,0 +1,46 @@
+# configure the build server
+# https://circleci.com/docs/congifuration#machine
+machine:
+  timezone: Europe/Berlin
+  services:
+    - docker
+  environment:
+    RAILS_ENV: test
+
+# configure project dependencies
+# https://circleci.com/docs/configuration#dependencies
+dependencies:
+  override:
+    # output information about the docker environment
+    - docker info
+
+    # create a .env file to configure our application container
+    - |
+      cat << VARS > .env
+      SECRET_KEY_TEST=$SECRET_KEY_TEST
+      POSTGRES_DB=$POSTGRES_DB
+      POSTGRES_USER=$POSTGRES_USER
+      POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      VARS
+
+    # build our Docker images
+    - docker-compose build
+
+# configure the database
+# https://circleci.com/docs/configuration#database
+database:
+  pre:
+    # boot all containers
+    - docker-compose up -d
+    # wait a second to make sure al containers are up and running
+    - sleep 1
+  # create our test DB and load the schema.
+  # The database is named $POSTGRES_DB
+  override:
+    -docker-compose run app rake db:create db:schema:load
+
+# configure the test run
+# https://circleci.com/docs/configuration#test
+test:
+  override:
+    - docker-compose run app rspec spec
