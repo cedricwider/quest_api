@@ -37,7 +37,7 @@ database:
   # create our test DB and load the schema.
   # The database is named $POSTGRES_DB
   override:
-    -docker-compose run app rake db:create db:schema:load
+    - docker-compose run app rake db:create db:schema:load
 
 # configure the test run
 # https://circleci.com/docs/configuration#test
