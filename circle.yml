@@ -6,6 +6,7 @@ machine:
     - docker
   environment:
     RAILS_ENV: test
+    DEPLOY_TAG: ${CIRCLE_BUILD_NUM}_${CIRCLE_SHA1:0:7}
 
 # configure project dependencies
 # https://circleci.com/docs/configuration#dependencies
@@ -13,7 +14,6 @@ dependencies:
   override:
     # output information about the docker environment
     - docker info
-
     # create a .env file to configure our application container
     - |
       cat << VARS > .env
@@ -23,7 +23,8 @@ dependencies:
       POSTGRES_PASSWORD=$POSTGRES_PASSWORD
       VARS
 
-    # build our Docker images
+    - bundle install
+    # - bundle exec rake assets:precompile <-- This step would be necessary if we weren't building a Rails API
     - docker-compose build
 
 # configure the database
@@ -44,3 +45,23 @@ database:
 test:
   override:
     - docker-compose run app rspec spec
+
+# configure image deployment
+# https://circleci.com/docs/configuration#deployment
+deployment:
+  hub:
+    branch: master
+    commands:
+      # tag the images we built with a repository name and deploy identifier
+      - docker tag $(docker images | grep questapi_app | awk '{ print $3 }') reponame/questapi_app:$DEPLOY_TAG
+      - docker tag $(docker images | grep questapi_web | awk '{ print $3 }') reponame/questapi_web:$DEPLOY_TAG
+
+      # log into Docker Hub so we can push our tagged images
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+
+      # push tagged images
+      - docker push reponame/questapi_app:$DEPLOY_TAG
+      - docker push reponame/questapi_web:$DEPLOY_TAG
+
+      # run deploy script
+      - bundle exec rake docker:deploy

@@ -12,6 +12,7 @@ gem 'listen', '~> 3.0.5', group: :development
 gem 'spring', group: :development
 gem 'spring-watcher-listen', '~> 2.0.0', group: :development
 gem 'erb2haml', group: :development
+gem 'sshkit', group: [:development, :test]
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
