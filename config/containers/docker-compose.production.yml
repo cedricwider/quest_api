@@ -27,7 +27,7 @@ app:
 
   # persist logs between containers by storing in a volume
   volumes:
-    - quest-api-logs:/var/www/docker_example/log
+    - quest-api-logs:/var/www/questapi/log
 
   # open webapp port for containers only
   expose:
@@ -37,7 +37,7 @@ app:
 web:
 
   # use the web server image pulled from Docker Hub
-  image: reponame/questapi_web:$DEPLOY_TAG
+  image: cedricwider/questapi_web:$DEPLOY_TAG
 
   # makes the web container aware of the app container
   links:
