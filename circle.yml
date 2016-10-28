@@ -50,7 +50,7 @@ test:
 # https://circleci.com/docs/configuration#deployment
 deployment:
   hub:
-    branch: master
+    branch: production
     commands:
       # tag the images we built with a repository name and deploy identifier
       - docker tag $(docker images | grep questapi_app | awk '{ print $3 }') cedricwider/questapi_app:$DEPLOY_TAG
