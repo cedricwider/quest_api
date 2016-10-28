@@ -12,7 +12,7 @@ db:
 app:
 
   # use the application server image pulled from Docker Hub
-  image: reponame/questapi_app:$DEPLOY_TAG
+  image: cedricwider/questapi_app:$DEPLOY_TAG
 
   # sources environment variable configuration for our app
   env_file: .env
