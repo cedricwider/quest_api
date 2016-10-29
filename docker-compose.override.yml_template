@@ -6,6 +6,10 @@ app:
   volumes:
     - .:/var/www/quest_api
 
+db:
+  ports:
+    - '5432:5432'
+
 web:
   environment:
     CA_SSL: 'false'
