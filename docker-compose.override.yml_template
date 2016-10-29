@@ -7,5 +7,7 @@ app:
     - .:/var/www/quest_api
 
 web:
+  environment:
+    CA_SSL: 'false'
   volumes_from:
     - app

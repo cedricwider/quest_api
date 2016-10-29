@@ -18,7 +18,12 @@ db:
 web:
   build: .
   dockerfile: config/containers/Dockerfile-nginx
+  environment:
+    CA_SSL: 'true' #set to 'false' for anything other than production
+  volumes:
+    - quest-api-ssl:/var/www/ssl
   links:
     - app
   ports:
     - '80:80'
+    - '443:443'
