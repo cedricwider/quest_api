@@ -4,4 +4,5 @@ ruben:
   last_name: tester
   hero_name: rspec
   email: ruben.tester@rspec.com
+  clan_id: 1
 
