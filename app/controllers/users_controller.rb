@@ -1,5 +1,6 @@
-require 'digest/sha2'
 class UsersController < ApplicationController
+
+  include Encryptable
 
   skip_before_action :authenticate, only: :create
 
@@ -47,9 +48,5 @@ class UsersController < ApplicationController
     user_params = JSON.parse(request.body.read)
                     .symbolize_keys.slice(:first_name, :last_name, :hero_name, :email, :password)
     user_params.update(user_params) { |k, v| k == :password ? encrypt(v) : v }
-  end
-
-  def encrypt(cleartext)
-    Digest::SHA2.hexdigest cleartext
   end
 end
