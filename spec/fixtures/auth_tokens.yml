@@ -1,0 +1,15 @@
+valid:
+  id: 1
+  created_at: <%= DateTime.now - 30.days %>
+  updated_at: <%= DateTime.now %>
+  lifespan: 300
+  user_id: 1
+  value: 1
+
+expired:
+  id: 2
+  created_at: <%= DateTime.now - 30.days %>
+  updated_at: <%= DateTime.now - 30.days %>
+  lifespan: 300
+  user_id: 2
+  value: 2

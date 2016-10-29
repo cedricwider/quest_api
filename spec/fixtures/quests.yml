@@ -1,0 +1,5 @@
+spec:
+  id: 1
+  description: rspec_description
+  status: rspec_status
+  name: spec

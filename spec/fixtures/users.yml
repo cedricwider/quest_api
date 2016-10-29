@@ -1,0 +1,18 @@
+ruben:
+  id: 1
+  first_name: ruben
+  last_name: tester
+  hero_name: rspec
+  email: ruben.tester@rspec.com
+  clan_id: 1
+  password: <%= Digest::SHA2.hexdigest('rspec') %>
+
+raven:
+  id: 2
+  first_name: raven
+  last_name: tester
+  hero_name: raven
+  email: raven.tester@rspec.com
+  clan_id: 1
+  password: <%= Digest::SHA2.hexdigest('rspec') %>
+
