@@ -12,7 +12,5 @@ describe AuthToken, type: :model do
       auth_token = described_class.new(lifespan: 1, created_at: DateTime.now)
       expect(auth_token.active?).to be true
     end
-  end
-
-
+   end
 end

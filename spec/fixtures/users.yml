@@ -1,0 +1,7 @@
+ruben:
+  id: 1
+  first_name: ruben
+  last_name: tester
+  hero_name: rspec
+  email: ruben.tester@rspec.com
+
