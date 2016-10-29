@@ -1,11 +1,17 @@
 FROM nginx
-RUN apt-get update -qq && apt-get -y install apache2-utils
+RUN apt-get update -qq && apt-get -y install apache2-utils curl
 ENV RAILS_ROOT /var/www/quest_api
+ENV SSL_ROOT /var/www/ssl
+ENV SSL_CERT_HOME $SSL_ROOT/certs/live
+COPY config/containers/nginx_startup.sh /tmp/
 WORKDIR $RAILS_ROOT
 RUN mkdir log
 COPY public public/
 COPY config/containers/nginx.conf /tmp/quest_api.nginx
+
 # substitute variable references in the Nginx config template for real values from the environment
 # put the final config in its place
-RUN envsubst '$RAILS_ROOT' < /tmp/quest_api.nginx > /etc/nginx/conf.d/default.conf
-CMD nginx -g 'daemon off;'
+RUN envsubst '$RAILS_ROOT:$SSL_ROOT:$SSL_CERT_HOME' < /tmp/quest_api.nginx > /etc/nginx/conf.d/default.conf
+# Define the script we want run once the container boots
+# Use the "exec" form of CMD so Nginx shuts down gracefully on SIGTERM (i.
+CMD /tmp/nginx_startup.sh
