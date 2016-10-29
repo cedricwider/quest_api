@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029131658) do
+ActiveRecord::Schema.define(version: 20161029190020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,9 @@ ActiveRecord::Schema.define(version: 20161029131658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "clan_id"
+    t.string   "password"
     t.index ["clan_id"], name: "index_users_on_clan_id", using: :btree
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   add_foreign_key "auth_tokens", "users"

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::API
     authenticate_or_request_with_http_token do |token_value, _|
       token = AuthToken.find_by(value: token_value)
       if token.present? && token.active?
+        token.touch
         @current_user = token.user
       else
         head :unauthorized
@@ -18,6 +19,8 @@ class ApplicationController < ActionController::API
   end
 
   def set_auth_header
-    response.headers['HTTP_AUTHORIZATION'] = @current_user.auth_token.value
+    if @current_user.present?
+      response.headers['HTTP_AUTHORIZATION'] = @current_user.auth_token.value
+    end
   end
 end

@@ -1,14 +1,7 @@
 require 'rails_helper'
 
 describe QuestsController, type: :controller do
-
-  before :each do
-    clan = Clan.new(name: 'rspec')
-    clan.save!
-    ruben = User.new(clan: clan, first_name: 'ruben', last_name: 'tester', hero_name: 'rspec', email: 'anyone@anywhere.com')
-    ruben.save!
-    AuthToken.new(value: 1, user: ruben, lifespan: 30).save!
-  end
+  fixtures :all
 
   let :valid_quest_json do
     {

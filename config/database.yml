@@ -11,6 +11,10 @@ development:
   <<: *default
   database: quests_api_development
 
+rubymine:
+  <<: *default
+  database: quests_api_development
+
 test:
   <<: *default
   database: quests_api_test
