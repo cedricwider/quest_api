@@ -50,3 +50,4 @@ web:
   # expose on the host the port we configured Nginx to bind to
   ports:
     - "80:80"
+    - "443:443"
