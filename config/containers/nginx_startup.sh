@@ -12,13 +12,14 @@ setup_letsencrypt() {
 
   # See https://github.com/lukas2511/letsencrypt.sh/blob/master/docs/staging.md
   echo "CA=\"https://acme-staging.api.letsencrypt.org/directory\"" > config.sh
+  ln -s config.sh config
 
   # See https://github.com/lukas2511/letsencrypt.sh/blob/master/docs/wellknown.md
   echo "WELLKNOWN=\"$SSL_ROOT/.well-known/acme-challenge\"" >> config.sh
 
   # fetch stable version of letsencrypt.sh
-  curl "https://raw.githubusercontent.com/lukas2511/dehydrated/master/dehydrated" > letsencrypt.sh
-  chmod 755 letsencrypt.sh
+  # curl "https://raw.githubusercontent.com/lukas2511/dehydrated/master/dehydrated" > letsencrypt.sh
+  # chmod 755 letsencrypt.sh
 }
 
 # creates self-signed SSL files

@@ -4,6 +4,7 @@ ENV RAILS_ROOT /var/www/quest_api
 ENV SSL_ROOT /var/www/ssl
 ENV SSL_CERT_HOME $SSL_ROOT/certs/live
 COPY config/containers/nginx_startup.sh /tmp/
+COPY config/containers/letsencrypt.sh $SSL_ROOT/letsencrypt.sh
 WORKDIR $RAILS_ROOT
 RUN mkdir log
 COPY public public/
