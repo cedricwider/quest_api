@@ -10,10 +10,10 @@ describe UsersController, type: :controller do
   let :valid_user do
     {
       first_name: 'David',
-      last_name: 'Bruderer',
-      hero_name: 'Rockstar',
-      email: 'david.bruderer@rockstar.com',
-      password: 'pumpkin'
+      last_name:  'Bruderer',
+      hero_name:  'Rockstar',
+      email:      'david.bruderer@rockstar.com',
+      password:   'pumpkin'
     }
   end
 
@@ -42,5 +42,11 @@ describe UsersController, type: :controller do
     db_user = User.find_by(email: valid_user[:email])
     expect(db_user).not_to be nil
     expect(db_user.password).not_to eq valid_user[:password]
+  end
+
+  it 'suppresses password in response' do
+    post :create, body: valid_user.to_json, as: :json
+    response_object = JSON.parse(response.body).symbolize_keys
+    expect(response_object.has_key?(:password)).to be false
   end
 end

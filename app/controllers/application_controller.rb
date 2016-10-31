@@ -19,7 +19,7 @@ class ApplicationController < ActionController::API
   end
 
   def set_auth_header
-    if @current_user.present?
+    if @current_user.present? && @current_user.auth_token.present?
       response.headers['HTTP_AUTHORIZATION'] = @current_user.auth_token.value
     end
   end
