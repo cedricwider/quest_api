@@ -16,7 +16,7 @@ class QuestsController < ApplicationController
   # POST /quests
   def create
     @quest = Quest.new(quest_json)
-
+    @quest.clan = @current_user.clan
     if @quest.save
       render json: @quest, status: :created, location: @quest
     else
