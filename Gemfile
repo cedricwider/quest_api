@@ -7,7 +7,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'haml-rails'
-gem "rspec-rails", group: [:development, :test]
+gem 'graphql'
+gem 'rspec-rails', group: [:development, :test]
 gem 'listen', '~> 3.0.5', group: :development
 gem 'spring', group: :development
 gem 'spring-watcher-listen', '~> 2.0.0', group: :development
